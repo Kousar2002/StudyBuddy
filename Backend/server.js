@@ -53,7 +53,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: REACT_APP_API_URL,
+    origin: process.env.REACT_APP_API_URL,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -61,7 +61,7 @@ const io = new Server(server, {
 
 // Middlewares
 app.use(cors({
-  origin: REACT_APP_API_URL,
+  origin: process.env.REACT_APP_API_URL,
   methods: ['GET', 'POST'],
   credentials: true,
 }));
