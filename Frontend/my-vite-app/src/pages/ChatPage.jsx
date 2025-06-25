@@ -964,8 +964,8 @@ import SendIcon from "@mui/icons-material/Send";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import AudioRecorder from "./AudioRecorder"; // assumes this exists
 
-const socket = io("http://localhost:5000");
-
+// const socket = io("http://localhost:5000");
+const socket = io(process.env.REACT_APP_API_URL);
 const ChatPage = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -1049,7 +1049,8 @@ const ChatPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://localhost:5000/upload", {
+    // const res = await fetch("http://localhost:5000/upload", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
       method: "POST",
       body: formData,
     });

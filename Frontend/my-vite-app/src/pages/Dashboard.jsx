@@ -363,7 +363,9 @@ const Dashboard = () => {
     const fetchMatches = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:5000/api/match", {
+        // const res = await axios.get("http://localhost:5000/api/match", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/match`, {
+
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -379,25 +381,6 @@ const Dashboard = () => {
   }, []);
   const navigate = useNavigate();
 
-// const handleChat = (userId,user) => {
-//   const buddyId = user?.user?._id;
-
-//   console.log("userId:", userId);
-//   console.log("buddyId:", buddyId);
-
-//   if (!userId || !buddyId) {
-//     alert("User info missing. Cannot start chat.");
-//     return;
-//   }
-
-//   if (userId === buddyId) {
-//     alert("You cannot chat with yourself.");
-//     return;
-//   }
-
-//   localStorage.setItem("buddyId", buddyId);
-//   navigate(`/chat/${userId}`);
-// };
 const handleChat = (userObject) => {
   console.log(userObject)
   const currentUser = JSON.parse(localStorage.getItem("userdata"));
