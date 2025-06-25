@@ -208,7 +208,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     // fetch('http://localhost:5000/api/subjects')
-    fetch(`${process.env.REACT_APP_API_URL}/api/subjects`)
+    // fetch(`${process.env.REACT_APP_API_URL}/api/subjects`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/subjects`)
+
       .then(res => res.json())
       .then(data => setSubjects(data))
       .catch(err => console.error(err));
@@ -274,7 +276,8 @@ const ProfilePage = () => {
 
     try {
       // const res = await axios.post("http://localhost:5000/api/profile", payload, {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile`, payload, {
+      // const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile`, payload, {
+      const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/profile`, payload,{
         headers: {
           Authorization: `Bearer ${token}`
         }
