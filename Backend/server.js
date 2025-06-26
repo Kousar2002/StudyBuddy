@@ -51,7 +51,8 @@ connectDB();
 // App and server setup
 const app = express();
 const server = http.createServer(app);
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+const allowedOrigins = [process.env.ALLOWED_ORIGINS, "http://localhost:5173"]
+console.log(allowedOrigins)
 
 app.use(cors({
   origin: allowedOrigins,
