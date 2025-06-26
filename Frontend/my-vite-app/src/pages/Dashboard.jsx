@@ -363,9 +363,9 @@ const Dashboard = () => {
     const fetchMatches = async () => {
       const token = localStorage.getItem("token");
       try {
-        // const res = await axios.get("http://localhost:5000/api/match", {
+        const res = await axios.get("https://studybuddy-64ue.onrender.com/api/match", {
         // const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/match`, {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/match`, {
+        // const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/match`, {
 
 
           headers: {

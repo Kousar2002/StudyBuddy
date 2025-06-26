@@ -1051,9 +1051,9 @@ const ChatPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    // const res = await fetch("http://localhost:5000/upload", {
+    const res = await fetch("https://studybuddy-64ue.onrender.com/upload", {
     // const res = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
+    // const res = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
       method: "POST",
       body: formData,
     });

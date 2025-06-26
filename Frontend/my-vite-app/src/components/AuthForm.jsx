@@ -75,14 +75,14 @@ const AuthForm = () => {
        delete dataToSend.confirmPassword;
 
       try {
-        const res = await axios.post("http://localhost:5000/api/auth/register", dataToSend);
+        const res = await axios.post("https://studybuddy-64ue.onrender.com/api/auth/register", dataToSend);
         alert("user registered successfully");
      } catch (error) {
         console.error("Error:", error.response?.data || error.message);
      }
   }else {
        try {
-           const res = await axios.post("http://localhost:5000/api/auth/login", loginData);
+           const res = await axios.post("https://studybuddy-64ue.onrender.com/api/auth/login", loginData);
            console.log(res);
            const { name,token } = res.data;
            console.log(token);
@@ -90,7 +90,7 @@ const AuthForm = () => {
           localStorage.setItem("user", JSON.stringify(name));
           localStorage.setItem("userdata",JSON.stringify(res.data))
           alert("user loged in successfully");
-          const profileRes = await axios.get("http://localhost:5000/api/me", {
+          const profileRes = await axios.get("https://studybuddy-64ue.onrender.com/api/me", {
              headers: { Authorization: `Bearer ${token}` },
           });
 
