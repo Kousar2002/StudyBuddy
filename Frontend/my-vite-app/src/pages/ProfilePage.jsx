@@ -207,9 +207,9 @@ const ProfilePage = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    // fetch('http://localhost:5000/api/subjects')
+    fetch('https://studybuddy-64ue.onrender.com/api/subjects')
     // fetch(`${process.env.REACT_APP_API_URL}/api/subjects`)
-    fetch(`${import.meta.env.VITE_API_URL}/api/subjects`)
+    // fetch(`${import.meta.env.VITE_API_URL}/api/subjects`)
 
       .then(res => res.json())
       .then(data => setSubjects(data))
