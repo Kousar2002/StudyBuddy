@@ -51,20 +51,37 @@ connectDB();
 // App and server setup
 const app = express();
 const server = http.createServer(app);
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTED_URL,
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
-// Middlewares
-app.use(cors({
-  origin: process.env.FRONTED_URL,
-  methods: ['GET', 'POST'],
-  credentials: true,
-}));
+// const io = new Server(server, {
+//   cors: {
+//     // origin: process.env.FRONTED_URL,
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+
+// // Middlewares
+// app.use(cors({
+//   // origin: process.env.FRONTED_URL,
+//   origin: "http://localhost:5173",
+//   methods: ['GET', 'POST'],
+//   credentials: true,
+// }));
 app.use(express.json());
 
 // Routes
