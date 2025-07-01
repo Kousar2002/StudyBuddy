@@ -7,6 +7,8 @@ import ProfilePage from './pages/ProfilePage'
 import  Dashboard from './pages/Dashboard';
 import { getToken } from "./utils/auth";
 import ChatPage from "./pages/ChatPage";
+export const BASE_URL = import.meta.env.VITE_API_URL
+console.log(BASE_URL )
 // const Redirector = () => {
 //   const navigate = useNavigate();
 

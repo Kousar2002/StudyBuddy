@@ -189,7 +189,8 @@ import {
   OutlinedInput,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+// import { BASE_URL } from './App';
+const BASE_URL = import.meta.env.VITE_API_URL
 const ProfilePage = () => {
   const [subjects, setSubjects] = useState([]);
   // const [able,setAble]=useState(false);
@@ -206,11 +207,17 @@ const ProfilePage = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    fetch('https://studybuddy-64ue.onrender.com/api/subjects')
-    // fetch(`${process.env.REACT_APP_API_URL}/api/subjects`)
-    // fetch(`${import.meta.env.VITE_API_URL}/api/subjects`)
+  // useEffect(() => {
+  //   fetch('https://studybuddy-64ue.onrender.com/api/subjects')
+  //   // fetch(`${process.env.REACT_APP_API_URL}/api/subjects`)
+  //   // fetch(`${import.meta.env.VITE_API_URL}/api/subjects`)
 
+  //     .then(res => res.json())
+  //     .then(data => setSubjects(data))
+  //     .catch(err => console.error(err));
+  // }, []);
+   useEffect(() => {
+    fetch(`${BASE_URL}/api/subjects`)
       .then(res => res.json())
       .then(data => setSubjects(data))
       .catch(err => console.error(err));
@@ -275,13 +282,18 @@ const ProfilePage = () => {
     };
 
     try {
-      const res = await axios.post("https://studybuddy-64ue.onrender.com/api/profile", payload, {
+      // const res = await axios.post("https://studybuddy-64ue.onrender.com/api/profile", payload, {
       // const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/profile`, payload, {
       // const res=await axios.post(`${import.meta.env.VITE_API_URL}/api/profile`, payload,{
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      //   headers: {
+      //     Authorization: `Bearer ${token}`
+      //   }
+      // });
+      const res = await axios.post(`${BASE_URL}/api/profile`, payload, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
       alert("Profile created successfully");
       navigate("/Dashboard");
     } catch (error) {

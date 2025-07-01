@@ -52,21 +52,21 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 // const allowedOrigins = process.env.ALLOWED_ORIGINS
-const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || ["http://localhost:5173"];
+const allowedOrigins = process.env.ALLOWED_ORIGINS;    
 
 console.log(allowedOrigins)
 
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
-}));
+}));    
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
+    // origin: ["https://study-buddy-eight-amber.vercel.app", "http://localhost:5173"],
+    origin:allowedOrigins,
     credentials: true,
-  },
+  },  
 });
 
 app.use(express.json());

@@ -354,7 +354,8 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+// import { BASE_URL } from '../App';
+const BASE_URL = import.meta.env.VITE_API_URL
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -363,11 +364,12 @@ const Dashboard = () => {
     const fetchMatches = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("https://studybuddy-64ue.onrender.com/api/match", {
+        // const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/match`, {
+        // const res = await axios.get("https://studybuddy-64ue.onrender.com/api/match", {
         // const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/match`, {
         // const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/match`, {
 
-
+        const res = await axios.get(`${BASE_URL}/api/match`,{
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -483,14 +485,6 @@ const handleChat = (userObject) => {
                 </CardContent>
 
                 <Box p={2} display="flex" justifyContent="flex-end">
-                  {/* <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    onClick={() => alert(`Start chat with ${user?.user?.name}`)}
-                  >
-                    Chat
-                  </Button> */}
                  <Button
   variant="contained"
   color="primary"
@@ -499,17 +493,6 @@ const handleChat = (userObject) => {
 >
   Chat
 </Button>
-{/* <Button
-  variant="contained"
-  color="secondary"
-  size="small"
-  onClick={() => {
-    alert("Chat button clicked");
-    console.log("Chat button clicked");
-  }}
->
-  Test Chat
-</Button> */}
                 </Box>
               </Card>
             </Grid>

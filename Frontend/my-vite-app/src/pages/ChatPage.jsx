@@ -963,9 +963,11 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import AudioRecorder from "./AudioRecorder"; // assumes this exists
+// import { BASE_URL } from './App';
 
 // const socket = io("http://localhost:5000");
 // const socket = io(process.env.REACT_APP_API_URL);
+const BASE_URL = import.meta.env.VITE_API_URL
 const socket = io(import.meta.env.VITE_API_URL);
 
 const ChatPage = () => {
@@ -1051,12 +1053,18 @@ const ChatPage = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("https://studybuddy-64ue.onrender.com/upload", {
-    // const res = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
-    // const res = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
-      method: "POST",
-      body: formData,
-    });
+    // const res = await fetch("https://studybuddy-64ue.onrender.com/upload", {
+    // // const res = await fetch(`${process.env.REACT_APP_API_URL}/upload`, {
+    // // const res = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
+    //   method: "POST",
+    //   body: formData,
+    // });
+      // const uploadUrl = `${import.meta.env.VITE_API_URL}/upload`;
+ const uploadUrl = `${BASE_URL}/upload`;
+  const res = await fetch(uploadUrl, {
+    method: "POST",
+    body: formData,
+  });
 
     const data = await res.json();
 

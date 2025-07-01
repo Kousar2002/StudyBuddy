@@ -88,6 +88,7 @@ export const loginUser = async (req, res) => {
       res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
+    console.loh(error)
     res.status(500).json({ message: "Server error" });
   }
 };
